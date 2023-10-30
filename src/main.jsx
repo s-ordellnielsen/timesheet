@@ -15,6 +15,18 @@ const updateSW = registerSW({
 	},
 })
 
+const observer = new MutationObserver(function (mutations) {
+	for (const mutation of mutations) {
+		if (mutation.type === 'attributes') {
+			console.log('attributes changed')
+
+			console.log(mutation)
+		}
+	}
+})
+
+observer.observe(wrapper, { attributes: true })
+
 ReactDOM.createRoot(document.getElementById('root')).render(
 	<React.StrictMode>
 		<App />
