@@ -3,6 +3,7 @@ import Navigation from './navigation'
 import Button from './components/button'
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
+import ReloadPrompt from './components/reload-prompt'
 
 export default function Layout() {
 	const [updateAvailable, setUpdateAvailable] = useState(false)
@@ -32,7 +33,7 @@ export default function Layout() {
 			<div className='pt-20 px-4 text-neutral-600'>
 				<Outlet />
 			</div>
-			{updateAvailable && (
+			{/* {updateAvailable && (
 				<motion.div
 					initial={{ opacity: 0, y: '100%' }}
 					animate={{ opacity: 1, y: '0%', transition: { delay: 0.2, type: 'spring', stiffness: 200, damping: 40 } }}
@@ -44,7 +45,8 @@ export default function Layout() {
 					</div>
 					<Button onClick={clickHandler}>Opdater</Button>
 				</motion.div>
-			)}
+			)} */}
+			<ReloadPrompt />
 		</div>
 	)
 }
