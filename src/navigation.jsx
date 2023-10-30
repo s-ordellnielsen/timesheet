@@ -1,13 +1,13 @@
-import { Activity, HeartPulse, Hexagon, Home, MoreVertical, PlusCircle } from 'lucide-react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { useRef, useState } from 'react'
+import { HeartPulse, Hexagon, Home, PlusCircle } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { useContext, useRef, useState } from 'react'
 import Dropdown from './components/dropdown/dropdown'
 import DropdownGroup from './components/dropdown/dropdown-group'
 import DropdownSpacer from './components/dropdown/dropdown-spacer'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import Sheet from './components/sheet'
 import AddJobSheet from './sections/add-job-sheet'
-import useLocalStorage from './hooks/use-local-storage'
+import JobsContext from './contexts/jobs-provider'
 
 export default function () {
 	const dropdownButton = useRef(null)
@@ -15,18 +15,21 @@ export default function () {
 	const [dropdownIsOpen, setDropdownIsOpen] = useState(false)
 	const [addJobIsOpen, setAddJobIsOpen] = useState(false)
 
-	const [jobs, setJobs] = useLocalStorage('jobs', [])
+	const [jobs] = useContext(JobsContext)
 
 	const navigate = useNavigate()
 	const location = useLocation()
 
 	const pathname = location.pathname
 
+	const { id } = useParams()
+
 	function getProperty(property) {
 		const paths = [
 			{ path: '/', title: 'Timesheet' },
 			{ path: '/settings', title: 'Indstillinger' },
 			{ path: '/help', title: 'Hjælp' },
+			{ path: '/job/', title: jobs.find(job => job.id === id)?.name || 'Job' },
 		].reverse()
 
 		return paths.find(path => pathname.startsWith(path.path))[property]
@@ -80,12 +83,13 @@ export default function () {
 								icon: PlusCircle,
 								action: () => setAddJobIsOpen(true),
 							},
+							...jobs.map(job => ({ label: job.name, action: () => navigate('/job/' + job.id) })),
 						]}
 					/>
 					<DropdownSpacer />
 					<DropdownGroup
 						items={[
-							{ label: 'Startside', icon: Home, action: () => navigate('/') },
+							{ label: 'Oversigt', icon: Home, action: () => navigate('/') },
 							{ label: 'Indstillinger', icon: Hexagon, action: () => navigate('/settings') },
 							{ label: 'Hjælp', icon: HeartPulse, action: () => navigate('/help') },
 						]}

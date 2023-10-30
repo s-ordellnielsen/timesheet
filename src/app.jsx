@@ -4,6 +4,7 @@ import Layout from './layout'
 import 'cal-sans'
 import PageLoader from './components/loaders/page-loader'
 import { JobsProvider } from './contexts/jobs-provider'
+import JobDetails from './pages/job-details'
 
 const Home = React.lazy(() => import('./pages/home'))
 const Settings = React.lazy(() => import('./pages/settings'))
@@ -25,6 +26,10 @@ function App() {
 				{
 					path: '/help',
 					element: <HelpCenter />,
+				},
+				{
+					path: '/job/:id',
+					element: <JobDetails />,
 				},
 			],
 		},

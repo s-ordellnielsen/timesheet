@@ -5,18 +5,22 @@ import { motion } from 'framer-motion'
 import Dropdown from '../../dropdown/dropdown'
 import DropdownGroup from '../../dropdown/dropdown-group'
 import DropdownSpacer from '../../dropdown/dropdown-spacer'
+import { useNavigate } from 'react-router-dom'
 
 export default function JobListItem({ job, removeJob }) {
 	const dropdownButton = useRef(null)
 
 	const [dropdownIsOpen, setDropdownIsOpen] = useState(false)
 
+	const navigate = useNavigate()
+
 	return (
-		<div className='flex flex-col light-interactive-elm p-4'>
+		<div onClick={() => navigate('/job/' + job.id)} className='flex flex-col light-interactive-elm p-4'>
 			<header className='flex justify-between items-center -mr-2 -mt-2'>
 				<h2 className='font-header text-neutral-900 text-lg'>{job.name}</h2>
 				<div
-					onClick={() => {
+					onClick={e => {
+						e.stopPropagation()
 						setDropdownIsOpen(!dropdownIsOpen)
 					}}
 					className='p-2 text-neutral-400 bg-neutral-100/0 active:bg-neutral-100 transition-colors rounded-lg'
