@@ -11,7 +11,7 @@ export default defineConfig({
 				enabled: true,
 			},
 			workbox: {
-				globPatterns: ['**/*.{js,css,html,png,svg,woff,woff2,txt'],
+				globPatterns: ['**/*.{js,css,html,png,svg,woff,woff2,txt', 'index.html'],
 			},
 			includeAssets: ['icon-192x192.png', 'icon-256x256.png', 'icon-384x384.png', 'icon-512x512.png'],
 			manifest: {
