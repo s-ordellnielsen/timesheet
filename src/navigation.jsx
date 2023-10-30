@@ -4,7 +4,7 @@ import { useRef, useState } from 'react'
 import Dropdown from './components/dropdown/dropdown'
 import DropdownGroup from './components/dropdown/dropdown-group'
 import DropdownSpacer from './components/dropdown/dropdown-spacer'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import Sheet from './components/sheet'
 import AddJobSheet from './sections/add-job-sheet'
 import useLocalStorage from './hooks/useLocalStorage'
@@ -18,11 +18,24 @@ export default function () {
 	const [_, setJobs] = useLocalStorage('jobs', [])
 
 	const navigate = useNavigate()
+	const location = useLocation()
+
+	const pathname = location.pathname
+
+	function getProperty(property) {
+		const paths = [
+			{ path: '/', title: 'Timesheet' },
+			{ path: '/settings', title: 'Indstillinger' },
+			{ path: '/help', title: 'Hjælp' },
+		].reverse()
+
+		return paths.find(path => pathname.startsWith(path.path))[property]
+	}
 
 	return (
 		<div className='fixed top-0 inset-x-0 h-16 flex items-center justify-between p-4 z-50'>
 			<div className='backdrop' />
-			<p className='relative font-header text-xl'>Timesheet</p>
+			<p className='relative font-header text-xl'>{getProperty('title')}</p>
 			<div className='relative flex flex-col items-center shrink-0'>
 				<button
 					ref={dropdownButton}
