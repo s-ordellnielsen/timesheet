@@ -30,9 +30,6 @@ export default function Home() {
 								Opret job
 							</Button>
 						</div>
-						<p>Test test test</p>
-						<p>ny test</p>
-						<p>Dette burde virke</p>
 					</div>
 					<Sheet isOpen={addJobSheetIsOpen} setIsOpen={setAddJobSheetIsOpen}>
 						<AddJobSheet setIsOpen={setAddJobSheetIsOpen} setJobs={setJobs} />
