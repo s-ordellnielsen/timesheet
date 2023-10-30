@@ -30,6 +30,7 @@ export default function Home() {
 								Opret job
 							</Button>
 						</div>
+						<p className='pt-12 font-header'>Her kommer en meget meningsfyldt opdatering</p>
 					</div>
 					<Sheet isOpen={addJobSheetIsOpen} setIsOpen={setAddJobSheetIsOpen}>
 						<AddJobSheet setIsOpen={setAddJobSheetIsOpen} setJobs={setJobs} />
