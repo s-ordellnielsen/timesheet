@@ -9,7 +9,10 @@ export default function ReloadPrompt() {
 		updateServiceWorker,
 	} = useRegisterSW({
 		onRegistered(r) {
-			console.log('SW registered: ' + r)
+			r &&
+				setInterval(() => {
+					r.update()
+				}, 60 * 60 * 1000)
 		},
 		onRegisterError(error) {
 			console.log('SW registration error', error)
@@ -17,6 +20,10 @@ export default function ReloadPrompt() {
 	})
 
 	function close() {
+		if (needRefresh) {
+			updateServiceWorker(true)
+			return
+		}
 		setOfflineReady(false)
 		setNeedRefresh(false)
 	}
@@ -28,13 +35,11 @@ export default function ReloadPrompt() {
 					initial={{ opacity: 0, y: '100%' }}
 					animate={{ opacity: 1, y: '0%', transition: { delay: 0.2, type: 'spring', stiffness: 200, damping: 40 } }}
 					exit={{ opacity: 0, y: '100%', transition: { type: 'spring', stiffness: 300, damping: 40 } }}
-					className='fixed bottom-8 left-4 right-4 flex justify-between items-center p-3'
-					light-interactive-elm
-					gap-3
+					className='fixed bottom-8 left-4 right-4 flex justify-between items-center p-3 light-interactive-elm gap-3'
 				>
 					<div className='flex flex-col gap-1'>
-						<p>{offlineReady ? 'Klar til offline-brug' : 'Klar til at opdatere'}</p>
-						<p>
+						<p className='font-header text-black'>{offlineReady ? 'Klar til offline-brug' : 'Klar til at opdatere'}</p>
+						<p className='text-sm text-neutral-500'>
 							{offlineReady
 								? 'Appen er nu blevet hentet og kan bruges selv uden forbindelse til internettet'
 								: 'Der er en ny version af Timesheet tilgængelig, vil du opdatere?'}
