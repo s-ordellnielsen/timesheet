@@ -18,9 +18,10 @@ const updateSW = registerSW({
 const observer = new MutationObserver(function (mutations) {
 	for (const mutation of mutations) {
 		if (mutation.type === 'attributes') {
-			console.log('attributes changed')
-
-			console.log(mutation)
+			if (mutation.target.dataset.userReadyToUpdate === 'true') {
+				updateSW()
+				wrapper.setAttribute('data-user-ready-to-update', 'false')
+			}
 		}
 	}
 })
