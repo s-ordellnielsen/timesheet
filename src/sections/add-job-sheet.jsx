@@ -122,7 +122,7 @@ export default function AddJobSheet({ setIsOpen, setJobs }) {
 					</motion.section>
 				</AnimatePresence>
 			</div>
-			<div className='absolute left-4 right-4 bottom-4 flex justify-between gap-2'>
+			<div className='absolute left-4 right-4 bottom-8 flex justify-between gap-2'>
 				<AnimatePresence>
 					{currentSlide > 0 && currentSlide < 3 ? (
 						<motion.div key='button' initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>

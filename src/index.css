@@ -163,7 +163,7 @@
 }
 
 .backdrop {
-	@apply absolute backdrop-blur-xl bg-white/75;
+	@apply absolute backdrop-blur-2xl bg-white/5 pointer-events-none;
 	inset: -1.3rem -0.5rem;
 	mask-image: linear-gradient(rgb(0, 0, 0) 55%, rgba(0, 0, 0, 0.8) 70%, rgba(0, 0, 0, 0) 100%);
 	-webkit-mask-image: linear-gradient(rgb(0, 0, 0) 55%, rgba(0, 0, 0, 0.8) 70%, rgba(0, 0, 0, 0) 100%);

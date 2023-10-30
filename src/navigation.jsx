@@ -20,8 +20,9 @@ export default function () {
 	const navigate = useNavigate()
 
 	return (
-		<div className='fixed top-0 inset-x-0 h-16 flex items-center justify-between p-4 bg-white z-50'>
-			<p className='font-header text-xl'>Timesheet</p>
+		<div className='fixed top-0 inset-x-0 h-16 flex items-center justify-between p-4 z-50'>
+			<div className='backdrop' />
+			<p className='relative font-header text-xl'>Timesheet</p>
 			<div className='relative flex flex-col items-center shrink-0'>
 				<button
 					ref={dropdownButton}
