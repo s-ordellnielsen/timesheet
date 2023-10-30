@@ -10,15 +10,10 @@ export default defineConfig({
 			devOptions: {
 				enabled: true,
 			},
-			workbox: {
-				globPatterns: ['**/*.{js,css,html,png,svg,woff,woff2,txt', 'index.html'],
-			},
-			includeAssets: ['icon-192x192.png', 'icon-256x256.png', 'icon-384x384.png', 'icon-512x512.png'],
 			manifest: {
 				theme_color: '#000000',
 				background_color: '#ffffff',
 				display: 'standalone',
-				start_url: '/',
 				name: 'Timesheet',
 				short_name: 'Timesheet',
 				description: 'Nem rapportering af timeregnskab',
