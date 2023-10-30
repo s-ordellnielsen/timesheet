@@ -7,7 +7,7 @@ import DropdownSpacer from './components/dropdown/dropdown-spacer'
 import { useLocation, useNavigate } from 'react-router-dom'
 import Sheet from './components/sheet'
 import AddJobSheet from './sections/add-job-sheet'
-import useLocalStorage from './hooks/useLocalStorage'
+import useLocalStorage from './hooks/use-local-storage'
 
 export default function () {
 	const dropdownButton = useRef(null)
@@ -15,7 +15,7 @@ export default function () {
 	const [dropdownIsOpen, setDropdownIsOpen] = useState(false)
 	const [addJobIsOpen, setAddJobIsOpen] = useState(false)
 
-	const [_, setJobs] = useLocalStorage('jobs', [])
+	const [jobs, setJobs] = useLocalStorage('jobs', [])
 
 	const navigate = useNavigate()
 	const location = useLocation()
@@ -93,7 +93,7 @@ export default function () {
 				</Dropdown>
 			</div>
 			<Sheet isOpen={addJobIsOpen} setIsOpen={setAddJobIsOpen}>
-				<AddJobSheet setIsOpen={setAddJobIsOpen} setJobs={setJobs} />
+				<AddJobSheet setIsOpen={setAddJobIsOpen} />
 			</Sheet>
 		</div>
 	)

@@ -1,4 +1,4 @@
-import { Calendar, Clock, Edit, MoreHorizontal, Trash2 } from 'lucide-react'
+import { Calendar, Clock, Edit, MoreHorizontal, Share, Trash2 } from 'lucide-react'
 import { useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 
@@ -52,7 +52,12 @@ export default function JobListItem({ job, removeJob }) {
 							</motion.div>
 						</button>
 						<Dropdown anchorRef={dropdownButton} isOpen={dropdownIsOpen} setIsOpen={setDropdownIsOpen}>
-							<DropdownGroup items={[{ label: 'Rediger', icon: Edit }]} />
+							<DropdownGroup
+								items={[
+									{ label: 'Rediger', icon: Edit },
+									{ label: 'Eksporter', icon: Share },
+								]}
+							/>
 							<DropdownSpacer />
 							<DropdownGroup
 								items={[{ label: 'Slet job', icon: Trash2, action: () => removeJob(job.id), isDestructive: true }]}

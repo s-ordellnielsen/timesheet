@@ -1,7 +1,10 @@
+import { useContext } from 'react'
 import JobListItem from './items/job-list-item'
 import { AnimatePresence, motion } from 'framer-motion'
+import JobsContext from '../../contexts/jobs-provider'
 
-export default function JobList({ jobs, setJobs }) {
+export default function JobList() {
+	const [jobs, setJobs] = useContext(JobsContext)
 	function removeJob(id) {
 		setJobs(jobs.filter(job => job.id !== id))
 	}

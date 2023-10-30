@@ -1,14 +1,14 @@
 import { Plus } from 'lucide-react'
 import Button from '../components/button'
-import useLocalStorage from '../hooks/useLocalStorage'
 import AddJobSheet from '../sections/add-job-sheet'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import Sheet from '../components/sheet'
 import { motion, AnimatePresence } from 'framer-motion'
 import JobList from '../components/lists/job-list'
+import JobsContext from '../contexts/jobs-provider'
 
 export default function Home() {
-	const [jobs, setJobs] = useLocalStorage('jobs', [])
+	const [jobs] = useContext(JobsContext)
 	const [addJobSheetIsOpen, setAddJobSheetIsOpen] = useState(false)
 
 	return (
@@ -32,7 +32,7 @@ export default function Home() {
 						</div>
 					</div>
 					<Sheet isOpen={addJobSheetIsOpen} setIsOpen={setAddJobSheetIsOpen}>
-						<AddJobSheet setIsOpen={setAddJobSheetIsOpen} setJobs={setJobs} />
+						<AddJobSheet setIsOpen={setAddJobSheetIsOpen} />
 					</Sheet>
 				</motion.main>
 			) : (
@@ -43,7 +43,7 @@ export default function Home() {
 					exit={{ opacity: 0, scale: 0 }}
 					transition={{ delay: 0.05, type: 'spring', stiffness: 200, damping: 40 }}
 				>
-					<JobList jobs={jobs} setJobs={setJobs} />
+					<JobList />
 				</motion.div>
 			)}
 		</AnimatePresence>

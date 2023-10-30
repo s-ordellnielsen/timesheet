@@ -18,7 +18,7 @@ export default function DropdownItem({ item }) {
 				{item.label}
 			</p>
 			<button className={`${item.isDestructive ? 'text-rose-400' : 'text-neutral-500'} shrink-0`}>
-				{item.icon && <Icon strokeWidth={2.5} />}
+				{item.icon && <Icon />}
 			</button>
 		</li>
 	)

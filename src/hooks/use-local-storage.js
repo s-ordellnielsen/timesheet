@@ -15,20 +15,16 @@ export default function useLocalStorage(key, initialValue) {
 	})
 
 	const setValue = value => {
-		console.log(value)
 		try {
 			let newValue = value
 
 			if (isFunction(value)) {
-				console.log(value(storedValue))
 				newValue = value(storedValue)
 			}
 
-			setStoredValue(value)
+			setStoredValue(newValue)
 
 			window.localStorage.setItem(key, JSON.stringify(newValue))
-
-			console.log(window.localStorage.getItem(key))
 		} catch (error) {
 			console.log(error)
 		}

@@ -1,14 +1,16 @@
 import Button from '../components/button'
 import SegmentedRadio from '../components/inputs/radio/segmented-radio'
 import { CalendarRange, Check, GanttChartSquare, Trash2 } from 'lucide-react'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import Input from '../components/inputs/input'
 import WeekdaySelect from '../components/inputs/radio/weekday-select'
 import ScrollWheel from '../components/inputs/scroll-wheel'
 import uuid from 'react-uuid'
+import JobsContext from '../contexts/jobs-provider'
 
-export default function AddJobSheet({ setIsOpen, setJobs }) {
+export default function AddJobSheet({ setIsOpen }) {
+	const [jobs, setJobs] = useContext(JobsContext)
 	const [currentSlide, setCurrentSlide] = useState(0)
 	const slideTitles = ['Vælg jobtype', 'Vælg navn til job', 'Vælg tidsplan']
 
@@ -73,7 +75,7 @@ export default function AddJobSheet({ setIsOpen, setJobs }) {
 			id: uuid(),
 		}
 
-		setJobs(prev => [...prev, job])
+		setJobs([...jobs, job])
 	}
 
 	return (

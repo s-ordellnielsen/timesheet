@@ -3,6 +3,7 @@ import React, { Suspense } from 'react'
 import Layout from './layout'
 import 'cal-sans'
 import PageLoader from './components/loaders/page-loader'
+import { JobsProvider } from './contexts/jobs-provider'
 
 const Home = React.lazy(() => import('./pages/home'))
 const Settings = React.lazy(() => import('./pages/settings'))
@@ -30,12 +31,12 @@ function App() {
 	])
 
 	return (
-		<>
+		<JobsProvider>
 			<Suspense fallback={<PageLoader />}>
 				<RouterProvider router={router} />
 			</Suspense>
 			{/* <PageLoader /> */}
-		</>
+		</JobsProvider>
 	)
 }
 
