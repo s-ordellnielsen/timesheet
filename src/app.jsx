@@ -5,6 +5,7 @@ import 'cal-sans'
 import PageLoader from './components/loaders/page-loader'
 import { JobsProvider } from './contexts/jobs-provider'
 import JobDetails from './pages/job-details'
+import { Dialog } from './components/dialog'
 
 const Home = React.lazy(() => import('./pages/home'))
 const Settings = React.lazy(() => import('./pages/settings'))
@@ -37,10 +38,11 @@ function App() {
 
 	return (
 		<JobsProvider>
-			<Suspense fallback={<PageLoader />}>
-				<RouterProvider router={router} />
-			</Suspense>
-			{/* <PageLoader /> */}
+			<Dialog>
+				<Suspense fallback={<PageLoader />}>
+					<RouterProvider router={router} />
+				</Suspense>
+			</Dialog>
 		</JobsProvider>
 	)
 }

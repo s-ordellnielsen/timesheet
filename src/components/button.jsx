@@ -1,16 +1,15 @@
 import { motion } from 'framer-motion'
 
-export default function Button({ importance, icon, children, size = 'm', onClick, disabled, fullWidth, ...props }) {
+export default function Button({ importance, icon, children, size = 'm', onClick, disabled, fullWidth, theme, ...props }) {
 	const isIconButton = icon && !children
 	const Icon = icon
 
 	const padding = generatePaddingClasses(size, icon && !children)
+	const theming = generateThemeClasses(theme, importance)
 
-	const containerClasses = `${importance === 'secondary' ? 'bg-neutral-200' : 'dark-interactive-elm'} ${
-		disabled && 'opacity-50'
-	} flex justify-center h-fit ${fullWidth ? 'flex-1 w-auto' : 'w-fit'} font-header items-center gap-6 text-neutral-${
-		importance === 'secondary' ? '600' : '50'
-	} rounded-2xl ${padding} transition-color`
+	const containerClasses = `${disabled && 'opacity-50'} flex justify-center h-fit ${
+		fullWidth ? 'flex-1 w-auto' : 'w-fit'
+	} font-header items-center gap-6 rounded-2xl ${padding} transition-color ${theming}`
 
 	return (
 		<motion.button
@@ -44,4 +43,20 @@ function generatePaddingClasses(size, iconButton) {
 	}
 
 	return `px-${x} py-${y}`
+}
+
+function generateThemeClasses(theme, importance) {
+	if (theme === 'light' || theme === 'secondary') {
+		return 'light-interactive-elm text-neutral-600'
+	}
+
+	if (theme === 'error' || theme === 'destructive') {
+		return 'bg-rose-500 text-rose-50 shadow-interactive-red'
+	}
+
+	if (importance === 'low') {
+		return 'bg-neutral-200 text-neutral-600'
+	}
+
+	return 'dark-interactive-elm text-neutral-50'
 }

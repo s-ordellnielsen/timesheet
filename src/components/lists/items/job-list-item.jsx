@@ -1,14 +1,16 @@
 import { Calendar, Clock, Edit, MoreHorizontal, Share, Trash2 } from 'lucide-react'
-import { useRef, useState } from 'react'
+import { useContext, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 
 import Dropdown from '../../dropdown/dropdown'
 import DropdownGroup from '../../dropdown/dropdown-group'
 import DropdownSpacer from '../../dropdown/dropdown-spacer'
 import { useNavigate } from 'react-router-dom'
+import DialogContext from '../../dialog'
 
 export default function JobListItem({ job, removeJob }) {
 	const dropdownButton = useRef(null)
+	const setDialog = useContext(DialogContext)
 
 	const [dropdownIsOpen, setDropdownIsOpen] = useState(false)
 
@@ -64,7 +66,25 @@ export default function JobListItem({ job, removeJob }) {
 							/>
 							<DropdownSpacer />
 							<DropdownGroup
-								items={[{ label: 'Slet job', icon: Trash2, action: () => removeJob(job.id), isDestructive: true }]}
+								items={[
+									{
+										label: 'Slet job',
+										icon: Trash2,
+										action: () => {
+											setDialog({
+												title: 'Er du sikker?',
+												desc: 'Hvis du sletter dette job vil det ikke være muligt at gå tilbage. Jobbet vil være væk for evigt og du skal manuelt tilføje jobbet og dets data igen',
+												action: () => {
+													removeJob(job.id)
+												},
+												actionLabel: 'Slet',
+												dismissLabel: 'Annuller',
+												isDestructive: true,
+											})
+										},
+										isDestructive: true,
+									},
+								]}
 							/>
 						</Dropdown>
 					</div>
