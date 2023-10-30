@@ -15,15 +15,14 @@ export default function JobListItem({ job, removeJob }) {
 		<div className='flex flex-col light-interactive-elm p-4'>
 			<header className='flex justify-between items-center -mr-2 -mt-2'>
 				<h2 className='font-header text-neutral-900 text-lg'>{job.name}</h2>
-				<button className='p-2 text-neutral-400 bg-neutral-100/0 active:bg-neutral-100 transition-colors rounded-lg'>
+				<div
+					onClick={() => {
+						setDropdownIsOpen(!dropdownIsOpen)
+					}}
+					className='p-2 text-neutral-400 bg-neutral-100/0 active:bg-neutral-100 transition-colors rounded-lg'
+				>
 					<div className='relative flex flex-col items-center shrink-0'>
-						<button
-							ref={dropdownButton}
-							onClick={() => {
-								setDropdownIsOpen(!dropdownIsOpen)
-							}}
-							className='h-6 w-6 justify-center text-neutral-600'
-						>
+						<button ref={dropdownButton} className='h-6 w-6 justify-center text-neutral-600'>
 							<motion.div
 								animate={{ rotate: dropdownIsOpen ? 270 : 0, transition: { type: 'spring', stiffness: 200, damping: 30 } }}
 								className='flex items-center gap-[3px] relative w-6 h-6 justify-center'
@@ -60,7 +59,7 @@ export default function JobListItem({ job, removeJob }) {
 							/>
 						</Dropdown>
 					</div>
-				</button>
+				</div>
 			</header>
 			<section className='flex flex-col pt-4 text-xs font-medium gap-3'>
 				<div className='flex items-center gap-2'>
