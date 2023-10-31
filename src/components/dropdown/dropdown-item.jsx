@@ -13,12 +13,12 @@ export default function DropdownItem({ item }) {
 			<p
 				className={`${
 					item.isDestructive ? 'text-rose-600' : 'text-neutral-900'
-				} flex-1 text-start overflow-x-hidden whitespace-nowrap text-ellipsis font-header`}
+				} flex-1 text-start overflow-x-hidden whitespace-nowrap text-ellipsis font-header text-sm`}
 			>
 				{item.label}
 			</p>
 			<button className={`${item.isDestructive ? 'text-rose-400' : 'text-neutral-500'} shrink-0`}>
-				{item.icon && <Icon />}
+				{item.icon && <Icon size={20} />}
 			</button>
 		</li>
 	)

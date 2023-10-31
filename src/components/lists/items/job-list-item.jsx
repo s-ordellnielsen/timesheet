@@ -90,13 +90,13 @@ export default function JobListItem({ job, removeJob }) {
 					</div>
 				</div>
 			</header>
-			<section className='flex flex-col pt-4 text-xs font-medium gap-3'>
+			<section className='flex flex-col pt-2 text-xs text-neutral-500 font-medium gap-3'>
 				<div className='flex items-center gap-2'>
-					<Calendar size={16} strokeWidth={3} className='text-neutral-400' />
+					<Calendar size={16} strokeWidth={3} className='text-neutral-300' />
 					<p>{job.days.length > 0 ? job.days.map((day, index) => mapWeekdays(day)).join(', ') : 'Ingen dage valgt'}</p>
 				</div>
 				<div className='flex items-center gap-2'>
-					<Clock size={16} strokeWidth={3} className='text-neutral-400' />
+					<Clock size={16} strokeWidth={3} className='text-neutral-300' />
 					<p>{job.timeFrame.toLocaleString('da')} timer pr. arbejdsdag</p>
 				</div>
 			</section>
