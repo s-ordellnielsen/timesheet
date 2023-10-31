@@ -1,15 +1,11 @@
-import { Plus } from 'lucide-react'
-import Button from '../components/button'
-import AddJobSheet from '../sections/add-job-sheet'
-import { useContext, useState } from 'react'
-import Sheet from '../components/sheet'
+import { useContext } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import JobList from '../components/lists/job-list'
 import JobsContext from '../contexts/jobs-provider'
+import NoJobsDialog from '../sections/home/no-jobs-dialog'
 
 export default function Home() {
 	const [jobs] = useContext(JobsContext)
-	const [addJobSheetIsOpen, setAddJobSheetIsOpen] = useState(false)
 
 	return (
 		<AnimatePresence mode='popLayout'>
@@ -22,18 +18,7 @@ export default function Home() {
 					key='empty'
 					className='flex flex-col justify-center items-center'
 				>
-					<div className='bg-gradient-to-t from-neutral-50/0 to-neutral-50/100 p-4 py-6 rounded-t-xl'>
-						<h2 className='text-lg font-header mb-1 text-black'>Ingen jobs</h2>
-						<p className='text-sm'>Du har ikke oprettet nogle jobs endnu. Opret et job for at starte</p>
-						<div className='pt-6 flex gap-2'>
-							<Button size='large' icon={Plus} onClick={() => setAddJobSheetIsOpen(true)} fullWidth>
-								Opret job
-							</Button>
-						</div>
-					</div>
-					<Sheet isOpen={addJobSheetIsOpen} setIsOpen={setAddJobSheetIsOpen}>
-						<AddJobSheet setIsOpen={setAddJobSheetIsOpen} />
-					</Sheet>
+					<NoJobsDialog />
 				</motion.main>
 			) : (
 				<motion.div

@@ -128,7 +128,7 @@ export default function AddJobSheet({ setIsOpen }) {
 				<AnimatePresence>
 					{currentSlide > 0 && currentSlide < 3 ? (
 						<motion.div key='button' initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-							<Button size='large' importance='secondary' onClick={prevSlide}>
+							<Button size='large' importance='low' onClick={prevSlide}>
 								Tilbage
 							</Button>
 						</motion.div>

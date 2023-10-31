@@ -7,17 +7,17 @@ export default function Layout() {
 	const { pathname } = useLocation()
 	return (
 		<div className='bg-white'>
-			<Navigation />
 			<AnimatePresence mode='popLayout'>
 				<motion.div
 					key={pathname}
-					initial={{ y: '50%', opacity: 0 }}
-					animate={{ y: '0%', opacity: 1, transition: { type: 'spring', stiffness: 300, damping: 40 } }}
+					// initial={{ y: '50%', opacity: 0 }}
+					// animate={{ y: '0%', opacity: 1, transition: { type: 'spring', stiffness: 300, damping: 40 } }}
 					className='pt-20 px-4 text-neutral-900 min-h-screen'
 				>
 					<Outlet />
 				</motion.div>
 			</AnimatePresence>
+			<Navigation />
 			<ReloadPrompt />
 		</div>
 	)

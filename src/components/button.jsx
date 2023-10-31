@@ -13,8 +13,8 @@ export default function Button({ importance, icon, children, size = 'm', onClick
 
 	return (
 		<motion.button
-			animate={{ scale: 1, opacity: 1 }}
-			whileTap={{ scale: 0.9, opacity: 0.9 }}
+			animate={{ scale: 1, opacity: disabled ? 0.5 : 1 }}
+			whileTap={{ scale: disabled ? 1 : 0.9, opacity: disabled ? 0.5 : 0.9 }}
 			transition={{ type: 'spring', stiffness: 600, damping: 30 }}
 			className={containerClasses}
 			onClick={onClick}

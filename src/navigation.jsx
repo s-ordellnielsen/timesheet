@@ -13,7 +13,6 @@ export default function () {
 	const dropdownButton = useRef(null)
 
 	const [dropdownIsOpen, setDropdownIsOpen] = useState(false)
-	console.log(dropdownIsOpen)
 	const [addJobIsOpen, setAddJobIsOpen] = useState(false)
 
 	const [jobs] = useContext(JobsContext)
@@ -37,7 +36,7 @@ export default function () {
 	}
 
 	return (
-		<div className='fixed top-0 inset-x-0 h-16 flex items-center justify-between p-4 z-50'>
+		<div className='fixed top-0 inset-x-0 h-16 flex items-center justify-between p-4 z-0'>
 			<div className='backdrop' />
 			<AnimatePresence mode='popLayout'>
 				<motion.p
