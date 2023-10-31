@@ -72,12 +72,12 @@ export default function JobListItem({ job, removeJob }) {
 										icon: Trash2,
 										action: () => {
 											setDialog({
-												title: 'Er du sikker?',
+												title: 'Er du sikker på du vil slette ' + job.name + '?',
 												desc: 'Hvis du sletter dette job vil det ikke være muligt at gå tilbage. Jobbet vil være væk for evigt og du skal manuelt tilføje jobbet og dets data igen',
 												action: () => {
 													removeJob(job.id)
 												},
-												actionLabel: 'Slet',
+												actionLabel: 'Slet job',
 												dismissLabel: 'Annuller',
 												isDestructive: true,
 											})
@@ -93,7 +93,7 @@ export default function JobListItem({ job, removeJob }) {
 			<section className='flex flex-col pt-4 text-xs font-medium gap-3'>
 				<div className='flex items-center gap-2'>
 					<Calendar size={16} strokeWidth={3} className='text-neutral-400' />
-					<p>{job.days.map((day, index) => mapWeekdays(day)).join(', ')}</p>
+					<p>{job.days.length > 0 ? job.days.map((day, index) => mapWeekdays(day)).join(', ') : 'Ingen dage valgt'}</p>
 				</div>
 				<div className='flex items-center gap-2'>
 					<Clock size={16} strokeWidth={3} className='text-neutral-400' />

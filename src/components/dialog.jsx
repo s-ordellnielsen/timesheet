@@ -18,7 +18,7 @@ export function Dialog({ children }) {
 							initial={{ opacity: 0 }}
 							animate={{ opacity: 1 }}
 							exit={{ opacity: 0 }}
-							className='fixed inset-0 bg-black/20 z-[9999]'
+							className='fixed inset-0 bg-black/30 z-[9999]'
 						/>
 						<motion.div
 							key='content'
