@@ -1,5 +1,5 @@
 import { HeartPulse, Hexagon, Home, PlusCircle } from 'lucide-react'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { useContext, useRef, useState } from 'react'
 import Dropdown from './components/dropdown/dropdown'
 import DropdownGroup from './components/dropdown/dropdown-group'
@@ -13,6 +13,7 @@ export default function () {
 	const dropdownButton = useRef(null)
 
 	const [dropdownIsOpen, setDropdownIsOpen] = useState(false)
+	console.log(dropdownIsOpen)
 	const [addJobIsOpen, setAddJobIsOpen] = useState(false)
 
 	const [jobs] = useContext(JobsContext)
@@ -38,11 +39,22 @@ export default function () {
 	return (
 		<div className='fixed top-0 inset-x-0 h-16 flex items-center justify-between p-4 z-50'>
 			<div className='backdrop' />
-			<p className='relative font-header text-xl'>{getProperty('title')}</p>
+			<AnimatePresence mode='popLayout'>
+				<motion.p
+					key={getProperty('title')}
+					initial={{ x: 24, opacity: 0 }}
+					animate={{ opacity: 1, x: 0 }}
+					exit={{ x: -24, opacity: 0 }}
+					className='relative font-header text-xl'
+				>
+					{getProperty('title')}
+				</motion.p>
+			</AnimatePresence>
 			<div className='relative flex flex-col items-center shrink-0'>
 				<button
 					ref={dropdownButton}
-					onClick={() => {
+					onClick={e => {
+						e.stopPropagation()
 						setDropdownIsOpen(!dropdownIsOpen)
 					}}
 					className='h-8 w-8 justify-center text-neutral-600'

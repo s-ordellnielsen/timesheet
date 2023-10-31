@@ -10,7 +10,7 @@ export default function JobList() {
 	}
 
 	return (
-		<motion.ul layout className='flex flex-col gap-6'>
+		<motion.ul layout className='flex flex-col gap-6 pb-12'>
 			<AnimatePresence mode='popLayout'>
 				{jobs?.map(job => (
 					<motion.li
