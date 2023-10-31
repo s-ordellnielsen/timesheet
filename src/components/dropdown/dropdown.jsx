@@ -71,7 +71,7 @@ export default function Dropdown({ anchorRef, isOpen, children, setIsOpen }) {
 						scale: 0.9,
 						transition: { type: 'spring', stiffness: 400, damping: 30 },
 					}}
-					className={`max-h-80 overflow-y-auto absolute z-[1000] light-interactive-elm w-[66.67vw] overscroll-contain`}
+					className={`max-h-80 overflow-y-auto absolute z-[1000] light-interactive-elm w-[66.67vw] overscroll-contain scrollbar-hide`}
 				>
 					{children}
 				</motion.div>
