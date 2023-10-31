@@ -28,8 +28,6 @@ export default function Dropdown({ anchorRef, isOpen, children, setIsOpen }) {
 	}
 
 	function closeDropdown(e) {
-		console.log(isOpen)
-		console.log('closing dropdown', e.target)
 		setIsOpen(false)
 	}
 

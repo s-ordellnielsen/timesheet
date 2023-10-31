@@ -13,7 +13,7 @@ export default function Layout() {
 					key={pathname}
 					initial={{ y: '50%', opacity: 0 }}
 					animate={{ y: '0%', opacity: 1 }}
-					className='pt-20 px-4 text-neutral-900'
+					className='pt-20 px-4 text-neutral-900 min-h-screen'
 				>
 					<Outlet />
 				</motion.div>
